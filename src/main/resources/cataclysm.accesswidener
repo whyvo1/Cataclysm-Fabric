@@ -1,0 +1,23 @@
+accessWidener v2 named
+accessible field net/minecraft/util/math/BlockBox maxY I
+accessible field net/minecraft/structure/pool/StructurePool elementCounts Ljava/util/List;
+accessible field net/minecraft/world/gen/StructureAccessor world Lnet/minecraft/world/WorldAccess;
+accessible method net/minecraft/structure/processor/StructureProcessor getType ()Lnet/minecraft/structure/processor/StructureProcessorType;
+accessible field net/minecraft/world/ChunkRegion structureAccessor Lnet/minecraft/world/gen/StructureAccessor;
+accessible field net/minecraft/world/ChunkRegion lowerCorner Lnet/minecraft/util/math/ChunkPos;
+accessible field net/minecraft/world/ChunkRegion chunks Ljava/util/List;
+accessible field net/minecraft/world/ChunkRegion width I
+accessible method net/minecraft/structure/pool/SinglePoolElement getStructure (Lnet/minecraft/structure/StructureTemplateManager;)Lnet/minecraft/structure/StructureTemplate;
+accessible field net/minecraft/server/network/ServerPlayerEntity screenHandlerSyncId I
+#extendable method net/minecraft/entity/Entity teleport (DDD)V
+accessible field net/minecraft/entity/mob/MobEntity navigation Lnet/minecraft/entity/ai/pathing/EntityNavigation;
+accessible method net/minecraft/server/network/ServerPlayerEntity incrementScreenHandlerSyncId ()V
+accessible method net/minecraft/server/network/ServerPlayerEntity onScreenHandlerOpened (Lnet/minecraft/screen/ScreenHandler;)V
+accessible field net/minecraft/entity/projectile/PersistentProjectileEntity life I
+accessible field net/minecraft/client/render/WorldRenderer chunks Lnet/minecraft/client/render/BuiltChunkStorage;
+accessible field net/minecraft/client/render/block/BlockRenderManager fluidRenderer Lnet/minecraft/client/render/block/FluidRenderer;
+mutable field net/minecraft/client/render/block/BlockRenderManager fluidRenderer Lnet/minecraft/client/render/block/FluidRenderer;
+accessible field net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk needsRebuild Z
+accessible field net/minecraft/client/render/Camera pitch F
+accessible field net/minecraft/client/render/Camera yaw F
+accessible field net/minecraft/entity/ai/goal/RevengeGoal lastAttackedTime I

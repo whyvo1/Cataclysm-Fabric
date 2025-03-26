@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "cataclysm:witherite_ingot",
+    "cataclysm:enderite_ingot",
+    "cataclysm:ancient_metal_ingot",
+    "cataclysm:black_steel_ingot",
+    "cataclysm:ignitium_ingot",
+    "cataclysm:cursium_ingot"
+  ]
+}

@@ -1,0 +1,129 @@
+package com.github.l_ender.cataclysm.blockentities;
+
+import com.github.l_ender.cataclysm.blocks.Cursed_Tombstone_Block;
+import com.github.l_ender.cataclysm.config.CMConfig;
+import com.github.l_ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Maledictus.Maledictus_Entity;
+import com.github.l_ender.cataclysm.entity.effect.ScreenShake_Entity;
+import com.github.l_ender.cataclysm.init.ModEntities;
+import com.github.l_ender.cataclysm.init.ModParticle;
+import com.github.l_ender.cataclysm.init.ModTag;
+import com.github.l_ender.cataclysm.init.ModTileentites;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
+
+public class Cursed_tombstone_Entity extends BlockEntity {
+
+    public int tickCount;
+    public int summonCooldownProgress = 0;
+    private final Random rnd = Random.create();
+
+
+    public Cursed_tombstone_Entity(BlockPos pos, BlockState state) {
+        super(ModTileentites.CURSED_TOMBSTONE, pos, state);
+    }
+
+    public static void commonTick(World level, BlockPos pos, BlockState blockState, Cursed_tombstone_Entity entity) {
+        if(blockState.getBlock() instanceof Cursed_Tombstone_Block) {
+            if (!blockState.get(Cursed_Tombstone_Block.POWERED)) {
+                if(entity.summonCooldownProgress < CMConfig.Cursed_tombstone_summon_cooldown * 20 * 60){
+                    entity.summonCooldownProgress++;
+                }else{
+                    if (!level.isClient) {
+                        level.setBlockState(pos, blockState.with(Cursed_Tombstone_Block.POWERED, Boolean.TRUE), 2);
+                    }
+                }
+            }else{
+                if (blockState.get(Cursed_Tombstone_Block.LIT)) {
+                    entity.tickCount++;
+                    if(entity.tickCount == 1) {
+                        ScreenShake_Entity.ScreenShake(level, Vec3d.ofCenter(pos), 20, 0.05f, 0, 80);
+                        //   this.level.addFreshEntity(new Flame_Strike_Entity(this.level, this.getBlockPos().getX() + 0.5F, this.getBlockPos().getY(), this.getBlockPos().getZ() + 0.5F, 0, 0, 100, 0, 2.5F, false, null));
+                    }
+                    if(entity.tickCount > 60 && entity.tickCount < 63) {
+                        double d0 = pos.getX() + 0.5F;
+                        double d1 = pos.getY() + 2;
+                        double d2 = pos.getZ() + 0.5F;
+                        float size = 3;
+
+                        for (float i = -size; i <= size; ++i) {
+                            for (float j = -size; j <= size; ++j) {
+                                for (float k = -size; k <= size; ++k) {
+                                    double d3 = (double) j + (entity.rnd.nextDouble() - entity.rnd.nextDouble()) * 0.5D;
+                                    double d4 = (double) i + (entity.rnd.nextDouble() - entity.rnd.nextDouble()) * 0.5D;
+                                    double d5 = (double) k + (entity.rnd.nextDouble() - entity.rnd.nextDouble()) * 0.5D;
+                                    double d6 = (double) MathHelper.sqrt((float) (d3 * d3 + d4 * d4 + d5 * d5)) / 0.5 + entity.rnd.nextGaussian() * 0.05D;
+
+                                    level.addParticle(ModParticle.PHANTOM_WING_FLAME, d0, d1, d2, d3 / d6, d4 / d6, d5 / d6);
+
+                                    if (i != -size && i != size && j != -size && j != size) {
+                                        k += size * 2 - 1;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if(entity.tickCount > 63) {
+                        Maledictus_Entity maledictus = ModEntities.MALEDICTUS.create(level);
+                        if (maledictus != null) {
+                            ScreenShake_Entity.ScreenShake(level, Vec3d.ofCenter(pos), 20, 0.1f, 0, 40);
+                            maledictus.setPosition(pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5);
+                            maledictus.setTombstonePos(pos);
+                            maledictus.setHomePos(pos);
+                            maledictus.setTombstoneDirection(blockState.get(Cursed_Tombstone_Block.FACING));
+                            if (!level.isClient) {
+                                int MthX = MathHelper.floor(pos.getX());
+                                int MthY = MathHelper.floor(pos.getY());
+                                int MthZ = MathHelper.floor(pos.getZ());
+                                for (int k2 = -1; k2 <= 1; ++k2) {
+                                    for (int l2 = -1; l2 <= 1; ++l2) {
+                                        for (int j = 0; j <= 5; ++j) {
+                                            int i3 = MthX + k2;
+                                            int k = MthY + j;
+                                            int l = MthZ + l2;
+                                            BlockPos blockpos = new BlockPos(i3, k, l);
+                                            BlockState block = level.getBlockState(blockpos);
+                                            if (block != Blocks.AIR.getDefaultState() && !block.isIn(ModTag.ALTAR_DESTROY_IMMUNE)) {
+                                                level.breakBlock(blockpos, false);
+                                            }
+
+                                        }
+                                    }
+                                }
+                                level.spawnEntity(maledictus);
+                                level.breakBlock(pos, false);
+                            }
+                        }
+                    }
+
+                }else{
+                    entity.tickCount = 0;
+                }
+            }
+        }
+
+    }
+
+    public void readNbt(NbtCompound p_155312_) {
+        super.readNbt(p_155312_);
+        if (p_155312_.contains("summonCooldownProgress", 11)) {
+            this.summonCooldownProgress = p_155312_.getInt("summonCooldownProgress");
+        }
+
+    }
+
+    protected void writeNbt(NbtCompound p_187486_) {
+        super.writeNbt(p_187486_);
+        p_187486_.putInt("summonCooldownProgress", this.summonCooldownProgress);
+    }
+
+}
+
+

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#c:ocean",
+    {
+      "id": "alexscaves:abyssal_chasm",
+      "required": false
+    }
+  ]
+}
