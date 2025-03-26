@@ -1,0 +1,32 @@
+{
+	"required": true,
+	"package": "com.github.l_ender.cataclysm.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"EntityMixin",
+		"ItemMixin",
+		"ItemStackMixin",
+		"LivingEntityMixin",
+		"NoBasaltColumnsInStructuresMixin",
+		"NoDeltasInStructuresMixin",
+		"NoGeodeInStructuresMixin",
+		"NoLakesInStructuresMixin",
+		"NoMagmaBlockInStructuresMixin",
+		"NoMultifaceGrowthFeatureInStructuresMixin",
+		"NoOreInStructuresMixin",
+		"PlayerEntityMixin"
+	],
+	"client": [
+		"Client.BackgroundRendererMixin",
+		"Client.CameraMixin",
+		"Client.ClientPlayerEntityMixin",
+		"Client.ClientPlayNetworkHandlerMixin",
+		"Client.CustomHeadLayerMixin",
+		"Client.HeldItemRendererMixin",
+		"Client.HumanoidModelMixin",
+		"Client.InGameHudMixin",
+		"Client.MinecraftClientMixin",
+		"Client.RenderLayersMixin",
+		"Client.WorldRendererMixin"
+	]
+}

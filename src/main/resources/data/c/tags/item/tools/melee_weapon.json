@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "cataclysm:gauntlet_of_guard",
+    "cataclysm:gauntlet_of_bulwark",
+    "cataclysm:gauntlet_of_maelstrom",
+    "cataclysm:the_incinerator",
+    "cataclysm:soul_render",
+    "cataclysm:the_annihilator",
+    "cataclysm:the_immolator",
+    "cataclysm:meat_shredder",
+    "cataclysm:void_forge",
+    "cataclysm:infernal_forge",
+    "cataclysm:void_core",
+    "cataclysm:tidal_claws",
+    "cataclysm:coral_spear",
+    "cataclysm:ancient_spear",
+    "cataclysm:coral_bardiche",
+    "cataclysm:athame",
+    "cataclysm:khopesh",
+    "cataclysm:black_steel_sword",
+    "cataclysm:black_steel_axe",
+    "cataclysm:black_steel_axe",
+    "cataclysm:black_steel_axe",
+    "cataclysm:black_steel_axe",
+    "cataclysm:black_steel_axe",
+    "cataclysm:bulwark_of_the_flame"
+  ]
+}

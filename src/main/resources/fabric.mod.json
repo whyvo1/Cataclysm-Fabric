@@ -1,0 +1,47 @@
+{
+	"schemaVersion": 1,
+	"id": "cataclysm",
+	"version": "${version}",
+	"name": "Cataclysm (Fabric)",
+	"description": "Fabric port of L_Ender's Cataclysm",
+	"authors": [
+		"Whyvo",
+		"L_Ender & all contributors of Cataclysm"
+	],
+	"contact": {
+	},
+	"license": "MIT License",
+	"icon": "assets/cataclysm/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.github.l_ender.cataclysm.Cataclysm"
+		],
+		"client":[
+			"com.github.l_ender.cataclysm.CataclysmClient"
+		],
+		"jei_mod_plugin": [
+			"com.github.l_ender.cataclysm.jei.LEnderCataclysmJEIPlugin"
+		]
+	},
+	"mixins": [
+		"cataclysm.mixins.json"
+	],
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/class_1309": ["com/github/l_ender/cataclysm/asm/LivingEntityCapabilityASM"]
+		}
+	},
+	"accessWidener" : "cataclysm.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"trinkets": ">=3.10.0",
+		"forgeconfigapiport": ">=21.1.3",
+		"styled-boss-bar-api": ">=0.0.4"
+	},
+	"suggests": {
+	}
+}

@@ -1,0 +1,98 @@
+plugins {
+	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://maven.ladysnake.org/releases'
+	}
+	maven {
+		name = "CurseMaven"
+		url = "https://www.cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
+	maven {
+		url 'https://raw.githubusercontent.com/Fuzss/modresources/main/maven/'
+		content {
+			includeGroup 'fuzs.forgeconfigapiport'
+		}
+	}
+	maven {
+		url = "https://jitpack.io"
+	}
+	mavenCentral()
+}
+
+dependencies {
+	minecraft "net.minecraft:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
+
+	modCompileOnlyApi("curse.maven:jei-238222:${project.jei_file_id}")
+
+	modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.fcap_version}"
+
+	modApi "curse.maven:styled-boss-bar-api-1223966:${project.sbba_file_id}"
+	
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/cataclysm.accesswidener")
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	withSourcesJar()
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	repositories {
+	}
+}

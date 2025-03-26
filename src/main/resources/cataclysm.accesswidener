@@ -1,0 +1,12 @@
+accessWidener v2 named
+accessible method net/minecraft/server/network/ServerPlayerEntity incrementScreenHandlerSyncId ()V
+accessible field net/minecraft/server/network/ServerPlayerEntity screenHandlerSyncId I
+accessible method net/minecraft/server/network/ServerPlayerEntity onScreenHandlerOpened (Lnet/minecraft/screen/ScreenHandler;)V
+accessible field net/minecraft/entity/projectile/PersistentProjectileEntity life I
+accessible field net/minecraft/client/render/block/BlockRenderManager fluidRenderer Lnet/minecraft/client/render/block/FluidRenderer;
+mutable field net/minecraft/client/render/block/BlockRenderManager fluidRenderer Lnet/minecraft/client/render/block/FluidRenderer;
+accessible field net/minecraft/client/render/WorldRenderer chunks Lnet/minecraft/client/render/BuiltChunkStorage;
+accessible field net/minecraft/util/math/BlockBox maxY I
+accessible field net/minecraft/structure/pool/StructurePool elementCounts Ljava/util/List;
+accessible field net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk needsRebuild Z
+accessible field net/minecraft/entity/ai/goal/RevengeGoal lastAttackedTime I

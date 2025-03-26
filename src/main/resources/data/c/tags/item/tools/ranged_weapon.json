@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cataclysm:wither_assault_shoulder_weapon",
+    "cataclysm:void_assault_shoulder_weapon",
+    "cataclysm:coral_spear",
+    "cataclysm:ancient_spear",
+    "cataclysm:coral_bardiche",
+    "cataclysm:tidal_claws",
+    "cataclysm:laser_gatling",
+    "cataclysm:cursed_bow"
+  ]
+}
